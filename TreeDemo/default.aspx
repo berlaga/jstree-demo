@@ -14,63 +14,118 @@
 
     <script type="text/javascript">
 
+
         $(function () {
             //$.jstree.defaults.core.themes.variant = "large";
+   
+
+            $('#jstree').on('ready.jstree', function (e, data) {
+                data.instance.open_node('100', null, true);
+                data.instance.open_node('200', null, true);
+                data.instance.open_node('300', null, true);
+
+            });
 
 
             $('#jstree').jstree({
                 "core": {
                     "check_callback": true,
-                    "data": [{
-                        "text": "Branch 1",
-                        "type": "branch1",
-                        "children": [{
-                            "text": "leaf 1.1",
-                            "type": "br1"
-                        }, {
-                            "text": "leaf 1.2",
-                            "type": "br1"
-                        }, {
-                            "text": "leaf 1.3",
-                            "type": "br1"
-                        }],
-                        "data": {"some_crap": "yes"}
-                    }, {
-                        "text": "Branch 2",
-                        "type": "branch2",
-                        "children": [{
-                            "text": "leaf 2.1",
-                            "type": "br2"
-                        }, {
-                            "text": "leaf 2.2",
-                            "type": "br2"
-                        }, {
-                            "text": "leaf 2.3",
-                            "type": "br2"
-                        }]
-                    }]
+                    "data": [
+					{
+					    "id":     "100",
+					    "parent": "#",
+					    "text":   "Dogs",
+					    "state": "opened",
+                        "type" : "root"
+					},
+					{
+					    "id":     "200",
+					    "parent": "100",
+					    "text":   "Large Dogs",
+					    "state": "opened",
+                        "type": "large-dogs"
+					},
+					{
+					    "id":     "300",
+					    "parent": "100",
+					    "text":   "Small Dogs",
+					    "state": "opened",
+                        "type": "small-dogs"
+					},
+                    {
+						"id":     "201",
+						"parent": "200",
+						"text":   "Great Dane",
+                        "type":   "large-dogs-child"
+                    },
+                    {
+                        "id": "202",
+                        "parent": "200",
+                        "text": "Giant Schnauzer",
+                        "icon": "glyphicon glyphicon-leaf",
+                        "type": "large-dogs-child"
+                    },
+                    {
+                        "id": "301",
+                        "parent": "300",
+                        "text": "Chiwawa",
+                        "type": "small-dogs-child"
+                    },
+                    {
+                        "id": "302",
+                        "parent": "300",
+                        "text": "Miniture Poodle",
+                        "type": "small-dogs-child"
+                    },
+                    {
+                        "id": "303",
+                        "parent": "300",
+                        "text": "Pomeranian",
+                        "type": "small-dogs-child"
+                    }
+
+
+					
+                    ]
+
                 },
                 "types": {
                     "#": {
-                        "valid_children": ["branch"]
+                        "valid_children": [],
+                        "state": "opened"
                     },
-                    "branch1": {
-                        "valid_children": ["br1"]
+
+                    "root": {
+                        "valid_children": [],
+                        "icon": "glyphicon glyphicon-flash"
                     },
-                    "branch2": {
-                        "valid_children": ["br2"]
+                    "large-dogs": {
+                        "valid_children": ["large-dogs-child"],
+                        "icon": "glyphicon glyphicon-picture"
                     },
-                    "br1": {
-                        "valid_children": ["br1"]
+                    "large-dogs-child": {
+                        "valid_children": [],
+                        "icon": "glyphicon glyphicon-globe"
                     },
-                    "br2": {
-                        "valid_children": ["br2"]
+                    "small-dogs": {
+                        "valid_children": ["small-dogs-child"],
+                        "icon": "glyphicon glyphicon-plane"
+                    },
+                    "small-dogs-child": {
+                        "valid_children": [],
+                        "icon": "glyphicon glyphicon-tower"
                     }
+
+
+
                 },
                 "plugins": ["types", "dnd", "checkbox"]
             });
 
             $('#jstree').jstree("hide_dots");
+
+            $("#jstree").jstree("open_all", "200");
+
         });
 
     </script>
