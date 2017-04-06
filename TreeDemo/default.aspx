@@ -17,17 +17,21 @@
 
         $(function () {
             //$.jstree.defaults.core.themes.variant = "large";
+
+            $.jstree.defaults.contextmenu.select_node = false;
    
 
             $('#jstree').on('ready.jstree', function (e, data) {
                 data.instance.open_node('100', null, true);
                 data.instance.open_node('200', null, true);
                 data.instance.open_node('300', null, true);
-
             });
 
 
             $('#jstree').jstree({
+                'contextmenu': {
+                    'items': customMenu
+                },
                 "core": {
                     "check_callback": true,
                     "data": [
@@ -119,14 +123,71 @@
 
 
                 },
-                "plugins": ["types", "dnd", "checkbox"]
+                "plugins": ["types", "dnd", "checkbox", "contextmenu"]
             });
 
             $('#jstree').jstree("hide_dots");
 
-            $("#jstree").jstree("open_all", "200");
+
+
+            $("#delete_node").click(function () {
+                var instance = $('#jstree').jstree(true);
+                if (instance.get_selected().length == 0) {
+                    alert("nothing is selected");
+                    return;
+                }
+
+                instance.delete_node(instance.get_selected());
+            });
+
+            $("#rename_node").click(function () {
+                var instance = $('#jstree').jstree(true);
+
+                if (instance.get_selected().length > 1) {
+                    alert("only one is allowed");
+                    return;
+                }
+
+                if (instance.get_selected().length == 0) {
+                    alert("nothing is selected");
+                    return;
+                }
+
+
+                var res = prompt("Rename value?");
+
+                if (res) {
+                    instance.rename_node(instance.get_selected()[0], res);
+                } else {
+                    alert("privide value");
+
+                }
+
+            });
 
         });
+
+
+
+        function customMenu(node) {
+            var items = {
+                'item1': {
+                    'label': 'Delete',
+                    'action': function () {  }
+                },
+                'item2': {
+                    'label': 'Rename',
+                    'action': function () { /* action */ }
+                }
+            }
+
+            if ((node.id == '100') || (node.id == '200') || (node.id == '300')) {
+                delete items.item1;
+                delete items.item2;
+            } 
+
+            return items;
+        }
 
     </script>
 
@@ -147,6 +208,15 @@
 
                 <div class="col-lg-5 col-lg-offset-1">
                     <div id="jstree"></div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top:40px;">
+                <div class="col-lg-3 col-lg-offset-1">
+                    <button id="delete_node" type="button">Delete selected node(s)</button>
+                </div>
+                <div class="col-lg-3">
+                    <button id="rename_node" type="button">Rename selected node</button>
                 </div>
 
             </div>
