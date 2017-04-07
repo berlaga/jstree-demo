@@ -52,8 +52,8 @@
 				"core": {
 					"check_callback": true,
 					"data": {
-					          'url': '/api/tree/get'
-					        }
+							  'url': '/api/tree/get'
+							}
 
 				},
 				"types": {
@@ -103,6 +103,14 @@
 
 
 				instance.delete_node(instance.get_selected());
+			});
+
+			$("#export_data").on("click", function(){
+
+			    var data = $("#jstree").jstree(true).get_json('#', { 'flat': true, 'no_li_attr': true, 'no_a_attr': true });
+
+			    $("#result").html(JSON.stringify(data));
+
 			});
 
 			$("#rename_node").click(function () {
@@ -184,7 +192,17 @@
 					<button id="rename_node" type="button">Rename selected node</button>
 				</div>
 
+				<div class="col-lg-3">
+					<button id="export_data" type="button">Export tree data</button>
+				</div>
 			</div>
+
+            <div class="row" style="margin-top:30px;">
+                <div class="col-lg-11 col-lg-offset-1">
+                    <pre id="result"></pre>
+                </div>
+            </div>
+
 		</div>
 	</form>
 
