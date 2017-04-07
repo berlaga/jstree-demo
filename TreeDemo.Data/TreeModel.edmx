@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TreeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TreeItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="TypeId" Type="int" Nullable="false" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsSelected" Type="bit" Nullable="false" />
+          <Property Name="IsRoot" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TreeItemType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TreeState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_TreeItem_TreeItem">
+          <End Role="TreeItem" Type="Self.TreeItem" Multiplicity="0..1" />
+          <End Role="TreeItem1" Type="Self.TreeItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TreeItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TreeItem1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TreeItem_TreeItemType">
+          <End Role="TreeItemType" Type="Self.TreeItemType" Multiplicity="1" />
+          <End Role="TreeItem" Type="Self.TreeItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TreeItemType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TreeItem">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TreeItem_TreeState">
+          <End Role="TreeState" Type="Self.TreeState" Multiplicity="0..1" />
+          <End Role="TreeItem" Type="Self.TreeItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TreeState">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TreeItem">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TreeModelStoreContainer">
+          <EntitySet Name="TreeItem" EntityType="Self.TreeItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TreeItemType" EntityType="Self.TreeItemType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TreeState" EntityType="Self.TreeState" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TreeItem_TreeItem" Association="Self.FK_TreeItem_TreeItem">
+            <End Role="TreeItem" EntitySet="TreeItem" />
+            <End Role="TreeItem1" EntitySet="TreeItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TreeItem_TreeItemType" Association="Self.FK_TreeItem_TreeItemType">
+            <End Role="TreeItemType" EntitySet="TreeItemType" />
+            <End Role="TreeItem" EntitySet="TreeItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TreeItem_TreeState" Association="Self.FK_TreeItem_TreeState">
+            <End Role="TreeState" EntitySet="TreeState" />
+            <End Role="TreeItem" EntitySet="TreeItem" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TreeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TreeItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="TypeId" Type="Int32" Nullable="false" />
+          <Property Name="StateId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Icon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsSelected" Type="Boolean" Nullable="false" />
+          <Property Name="IsRoot" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TreeItem1" Relationship="Self.FK_TreeItem_TreeItem" FromRole="TreeItem" ToRole="TreeItem1" />
+          <NavigationProperty Name="TreeItem2" Relationship="Self.FK_TreeItem_TreeItem" FromRole="TreeItem1" ToRole="TreeItem" />
+          <NavigationProperty Name="TreeItemType" Relationship="Self.FK_TreeItem_TreeItemType" FromRole="TreeItem" ToRole="TreeItemType" />
+          <NavigationProperty Name="TreeState" Relationship="Self.FK_TreeItem_TreeState" FromRole="TreeItem" ToRole="TreeState" />
+        </EntityType>
+        <EntityType Name="TreeItemType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TreeItems" Relationship="Self.FK_TreeItem_TreeItemType" FromRole="TreeItemType" ToRole="TreeItem" />
+        </EntityType>
+        <EntityType Name="TreeState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TreeItems" Relationship="Self.FK_TreeItem_TreeState" FromRole="TreeState" ToRole="TreeItem" />
+        </EntityType>
+        <Association Name="FK_TreeItem_TreeItem">
+          <End Role="TreeItem" Type="Self.TreeItem" Multiplicity="0..1" />
+          <End Role="TreeItem1" Type="Self.TreeItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TreeItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TreeItem1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TreeItem_TreeItemType">
+          <End Role="TreeItemType" Type="Self.TreeItemType" Multiplicity="1" />
+          <End Role="TreeItem" Type="Self.TreeItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TreeItemType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TreeItem">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TreeItem_TreeState">
+          <End Role="TreeState" Type="Self.TreeState" Multiplicity="0..1" />
+          <End Role="TreeItem" Type="Self.TreeItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TreeState">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TreeItem">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="treeModelEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TreeItems" EntityType="Self.TreeItem" />
+          <EntitySet Name="TreeItemTypes" EntityType="Self.TreeItemType" />
+          <EntitySet Name="TreeStates" EntityType="Self.TreeState" />
+          <AssociationSet Name="FK_TreeItem_TreeItem" Association="Self.FK_TreeItem_TreeItem">
+            <End Role="TreeItem" EntitySet="TreeItems" />
+            <End Role="TreeItem1" EntitySet="TreeItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TreeItem_TreeItemType" Association="Self.FK_TreeItem_TreeItemType">
+            <End Role="TreeItemType" EntitySet="TreeItemTypes" />
+            <End Role="TreeItem" EntitySet="TreeItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TreeItem_TreeState" Association="Self.FK_TreeItem_TreeState">
+            <End Role="TreeState" EntitySet="TreeStates" />
+            <End Role="TreeItem" EntitySet="TreeItems" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TreeModelStoreContainer" CdmEntityContainer="treeModelEntities">
+          <EntitySetMapping Name="TreeItems">
+            <EntityTypeMapping TypeName="TreeModel.TreeItem">
+              <MappingFragment StoreEntitySet="TreeItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+                <ScalarProperty Name="IsRoot" ColumnName="IsRoot" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TreeItemTypes">
+            <EntityTypeMapping TypeName="TreeModel.TreeItemType">
+              <MappingFragment StoreEntitySet="TreeItemType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TreeStates">
+            <EntityTypeMapping TypeName="TreeModel.TreeState">
+              <MappingFragment StoreEntitySet="TreeState">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
