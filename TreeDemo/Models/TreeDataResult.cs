@@ -25,6 +25,8 @@ namespace TreeDemo.Models
 
 		public State state {get; set;}
 
+		public TreeViewNodeCustomData data { get; set; }
+
 	}
 
 

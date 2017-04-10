@@ -17,5 +17,14 @@ namespace TreeDemo.Models
 
         public string icon { get; set; }
 
+        public TreeViewNodeCustomData data { get; set; }
+
+    }
+
+    public class TreeViewNodeCustomData
+    {
+        public bool IsRoot { get; set;}
+        public bool IsSelected { get; set; }
+
     }
 }

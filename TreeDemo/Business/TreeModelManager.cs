@@ -26,7 +26,14 @@ namespace TreeDemo.Business
 
                 foreach (var item in result.ToList())
                 {
-                    treeNodes.Add(new TreeViewNode() { id = item.Id.ToString(), parent = item.ParentId.HasValue ? item.ParentId.Value.ToString() : "#" , type = item.TypeId.ToString(), icon= string.Empty, text = item.Name });
+                    treeNodes.Add(
+                        new TreeViewNode() { id = item.Id.ToString(), 
+                            parent = item.ParentId.HasValue ? item.ParentId.Value.ToString() : "#" , 
+                            type = item.TypeId.ToString(), 
+                            icon= string.Empty, 
+                            text = item.Name,
+                            data = new TreeViewNodeCustomData() { IsRoot = item.IsRoot, IsSelected= item.IsSelected }
+                        });
                 }
 
 
@@ -40,8 +47,24 @@ namespace TreeDemo.Business
             return null;
         }
         
-        public void SaveModel(List<TreeDataResult> treeNodes)
+        public void SaveModel(TreeDataResult result)
         {
+            //using (var context = new treeModelEntities())
+            //{
+            //    TreeState newState = new TreeState();
+            //    newState.Name = result.StateName;
+
+            //    context.TreeStates.Add(newState);
+
+            //    foreach (var item in result.NodeList)
+            //    {
+            //        TreeItem newTreeItem = new TreeItem();
+
+                   
+            //        context.TreeItems.Add(newTreeItem);
+            //    }
+                
+            //}
 
         }
 
