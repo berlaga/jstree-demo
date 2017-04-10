@@ -111,6 +111,16 @@
 
 			    $("#result").html(JSON.stringify(data));
 
+			    $.ajax({
+			        type: "POST",
+			        headers: {
+			            'Accept': 'application/json',
+			            'Content-Type': 'application/json'
+			        },
+			        url: "api/tree/post",
+			        data: JSON.stringify(data)
+			    });
+
 			});
 
 			$("#rename_node").click(function () {

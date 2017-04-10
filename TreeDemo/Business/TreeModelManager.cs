@@ -35,14 +35,14 @@ namespace TreeDemo.Business
             }
         }
 
-        public List<TreeViewNode> CreateModel(int modelId)
+        public List<TreeViewNode> LoadModel(int modelId)
         {
             return null;
         }
         
-        private List<TreeViewNode> CreateModel(List<TreeItem> treeNodes)
+        public void SaveModel(List<TreeDataResult> treeNodes)
         {
-            return null;
+
         }
 
     }
