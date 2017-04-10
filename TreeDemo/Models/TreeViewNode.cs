@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Web;
 
@@ -17,6 +18,8 @@ namespace TreeDemo.Models
 
         public string icon { get; set; }
 
+        public object li_attr { get; set; }
+
         public TreeViewNodeCustomData data { get; set; }
 
     }
@@ -27,4 +30,8 @@ namespace TreeDemo.Models
         public bool IsSelected { get; set; }
 
     }
+
+   
+
+
 }

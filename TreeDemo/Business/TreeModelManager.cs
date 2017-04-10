@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Web;
 
@@ -32,6 +33,7 @@ namespace TreeDemo.Business
                             type = item.TypeId.ToString(), 
                             icon= string.Empty, 
                             text = item.Name,
+                                             li_attr = item.Name == "Miniature Schnauzer" ? new { @class = "node-added" } : new { @class = "" },
                             data = new TreeViewNodeCustomData() { IsRoot = item.IsRoot, IsSelected= item.IsSelected }
                         });
                 }

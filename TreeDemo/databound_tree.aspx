@@ -7,10 +7,22 @@
 	<title>Demo - databound</title>
 	<link href="Content/bootstrap.css" rel="stylesheet" />
 	<link href="Content/jsTree/themes/default/style.css" rel="stylesheet" />
+
+	<style type="text/css">
+		.node-added{
+			color:red;
+		}
+
+		.node-added a{
+			text-decoration:line-through !important;
+		}
+
+	</style>
 	
 	<script src="Scripts/jquery-1.9.1.js"></script>
 	<script src="Scripts/bootstrap.js"></script>
 	<script src="Scripts/jstree.js"></script>
+
 
 	<script type="text/javascript">
 
@@ -43,6 +55,12 @@
 				data.instance.open_node('2', null, true);
 				data.instance.open_node('3', null, true);
 			});
+
+			$('#jstree').on('create_node.jstree', function (e, data) {
+				console.log(node);
+			});
+
+			
 
 
 			$('#jstree').jstree({
@@ -107,11 +125,11 @@
 
 			$("#export_data").on("click", function(){
 
-			    var data = $("#jstree").jstree(true).get_json('#', { 'flat': true, 'no_li_attr': true, 'no_a_attr': true });
+				var data = $("#jstree").jstree(true).get_json('#', { 'flat': true, 'no_li_attr': true, 'no_a_attr': true });
 
-			    var result = new TreeDataResult(data, "test");
+				var result = new TreeDataResult(data, "test");
 
-			    $("#result").html(JSON.stringify(result));
+				$("#result").html(JSON.stringify(result));
 
 				$.ajax({
 					type: "POST",
@@ -177,10 +195,10 @@
 
 		function TreeDataResult(data, name)
 		{
-		    var self = this;
+			var self = this;
 
-		    self.nodeList = data;
-		    self.stateName = name;
+			self.nodeList = data;
+			self.stateName = name;
 		}
 
 	</script>
