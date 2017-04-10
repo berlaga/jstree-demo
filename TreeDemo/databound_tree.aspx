@@ -107,19 +107,19 @@
 
 			$("#export_data").on("click", function(){
 
-			    var data = $("#jstree").jstree(true).get_json('#', { 'flat': true, 'no_li_attr': true, 'no_a_attr': true });
+				var data = $("#jstree").jstree(true).get_json('#', { 'flat': true, 'no_li_attr': true, 'no_a_attr': true });
 
-			    $("#result").html(JSON.stringify(data));
+				$("#result").html(JSON.stringify(data));
 
-			    $.ajax({
-			        type: "POST",
-			        headers: {
-			            'Accept': 'application/json',
-			            'Content-Type': 'application/json'
-			        },
-			        url: "api/tree/post",
-			        data: JSON.stringify(data)
-			    });
+				$.ajax({
+					type: "POST",
+					headers: {
+						'Accept': 'application/json',
+						'Content-Type': 'application/json'
+					},
+					url: "api/tree/post",
+					data: JSON.stringify(data)
+				});
 
 			});
 
@@ -207,11 +207,11 @@
 				</div>
 			</div>
 
-            <div class="row" style="margin-top:30px;">
-                <div class="col-lg-11 col-lg-offset-1">
-                    <pre id="result"></pre>
-                </div>
-            </div>
+			<div class="row" style="margin-top:30px;">
+				<div class="col-lg-11 col-lg-offset-1">
+					<pre id="result"></pre>
+				</div>
+			</div>
 
 		</div>
 	</form>
