@@ -107,9 +107,11 @@
 
 			$("#export_data").on("click", function(){
 
-				var data = $("#jstree").jstree(true).get_json('#', { 'flat': true, 'no_li_attr': true, 'no_a_attr': true });
+			    var data = $("#jstree").jstree(true).get_json('#', { 'flat': true, 'no_li_attr': true, 'no_a_attr': true });
 
-				$("#result").html(JSON.stringify(data));
+			    var result = new TreeDataResult(data, "test");
+
+			    $("#result").html(JSON.stringify(result));
 
 				$.ajax({
 					type: "POST",
@@ -118,7 +120,7 @@
 						'Content-Type': 'application/json'
 					},
 					url: "api/tree/post",
-					data: JSON.stringify(data)
+					data: JSON.stringify(result)
 				});
 
 			});
@@ -170,6 +172,15 @@
 			} 
 
 			return items;
+		}
+
+
+		function TreeDataResult(data, name)
+		{
+		    var self = this;
+
+		    self.nodeList = data;
+		    self.stateName = name;
 		}
 
 	</script>

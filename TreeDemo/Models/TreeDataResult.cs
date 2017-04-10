@@ -7,6 +7,12 @@ namespace TreeDemo.Models
 {
 	public class TreeDataResult
 	{
+		public string StateName { get; set; }
+		public List<TreeNodeResult> NodeList { get; set; }
+	}
+
+	public class TreeNodeResult
+	{
 		public string id { get; set; }
 
 		public string parent { get; set; }

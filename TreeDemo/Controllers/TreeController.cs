@@ -33,10 +33,10 @@ namespace TreeDemo.Controllers
 
         // POST: api/Tree
         [HttpPost]
-        public void Post([FromBody] List<TreeDataResult> data)
+        public void Post([FromBody] TreeDataResult data)
         {
-            TreeModelManager man = new TreeModelManager();
-            man.SaveModel(data);
+            //TreeModelManager man = new TreeModelManager();
+            //man.SaveModel(data);
         }
 
      
