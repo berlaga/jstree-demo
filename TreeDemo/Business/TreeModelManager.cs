@@ -33,7 +33,7 @@ namespace TreeDemo.Business
                             type = item.TypeId.ToString(), 
                             icon= string.Empty, 
                             text = item.Name,
-                                             li_attr = item.Name == "Miniature Schnauzer" ? new { @class = "node-added" } : new { @class = "" },
+                            li_attr = new { @class = SetLiCSSClass(item) },
                             data = new TreeViewNodeCustomData() { IsRoot = item.IsRoot, IsSelected= item.IsSelected }
                         });
                 }
@@ -68,6 +68,20 @@ namespace TreeDemo.Business
                 
             //}
 
+        }
+
+
+        private string SetLiCSSClass(TreeItem node)
+        {
+            if ((node.TypeId == 1) || (node.TypeId == 2) || (node.TypeId == 3))
+            {
+                //root node
+                return string.Empty;
+            }
+            else if (node.Name == "Miniature Schnauzer")
+                return "node-added node-child";
+            else
+                return "node-child";
         }
 
     }
