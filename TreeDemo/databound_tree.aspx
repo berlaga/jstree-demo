@@ -41,26 +41,24 @@
 				this.select_node = function (obj, e) {
 					if (this.settings.conditionalselect.call(this, this.get_node(obj))) {
 
-						if ((obj.classList.contains("delete-node")) || (obj.classList.contains("edit-node")))
+						var node = obj.parentNode;
+
+
+						if (obj.classList.contains("delete-node"))
 						{
-							var node = obj.parentNode;
-
 							custom_delete_node(node);
-							//var nodes = obj.parentNode.childNodes;
-
-							//for (var i = 0; i < nodes.length; i++)
-							//{
-							//    if ((nodes[i].nodeName == "A") && (nodes[i].id))
-							//    {
-							//        id = nodes[i].id;
-							//        break;
-							//    }
-							//}
 
 							return;
 						}
+						else if(obj.classList.contains("edit-node"))
+						{
+						    custom_edit_node(node);
 
-						parent.select_node.call(this, obj, e);
+						    return;
+
+						}
+						else
+							parent.select_node.call(this, obj, e);
 					}
 				};
 
@@ -72,6 +70,11 @@
 			var ref = $('#jstree').jstree(true);
 			ref.delete_node(node);
 			ref.redraw();
+		}
+
+		function custom_edit_node(node) {
+		    var ref = $('#jstree').jstree(true);
+		    ref.edit(node);
 		}
 
 
@@ -136,6 +139,14 @@
 				$(".node-child").append("<a class='edit-node jstree-anchor' href='#'><i class='glyphicon glyphicon-pencil'></i></a>&nbsp;<a class='delete-node jstree-anchor' href='#'><i class='glyphicon glyphicon-trash'></i></a>");
 			});
 
+
+			
+			$('#jstree').on('rename_node.jstree', function (e, data) {
+
+			    $("#" + data.node.id).append("<a class='edit-node jstree-anchor' href='#'><i class='glyphicon glyphicon-pencil'></i></a>&nbsp;<a class='delete-node jstree-anchor' href='#'><i class='glyphicon glyphicon-trash'></i></a>");
+			    //console.log("");
+			});
+
 			$('#jstree').on('redraw.jstree', function (e, data) {
 
 				//append delete and edit buttons
@@ -143,7 +154,7 @@
 					
 					if ($(this).children("a.edit-node").length == 0 && $(this).children("a.delete-node").length == 0)
 					{
-					    $(this).append("<a class='edit-node jstree-anchor' href='#'><i class='glyphicon glyphicon-pencil'></i></a>&nbsp;<a class='delete-node jstree-anchor' href='#'><i class='glyphicon glyphicon-trash'></i></a>");
+						$(this).append("<a class='edit-node jstree-anchor' href='#'><i class='glyphicon glyphicon-pencil'></i></a>&nbsp;<a class='delete-node jstree-anchor' href='#'><i class='glyphicon glyphicon-trash'></i></a>");
 
 					}
 
@@ -332,15 +343,15 @@
 			</div>
 
 			<div class="row" style="margin-top:40px;">
-				<div class="col-lg-3 col-lg-offset-1">
+	<%--			<div class="col-lg-3 col-lg-offset-1">
 					<button id="delete_node" type="button">Delete selected node(s)</button>
 				</div>
 				<div class="col-lg-3">
 					<button id="rename_node" type="button">Rename selected node</button>
-				</div>
+				</div>--%>
 
-				<div class="col-lg-3">
-					<button id="export_data" type="button">Export tree data</button>
+				<div class="col-lg-3 col-lg-offset-1">
+					<button id="export_data" type="button"><i class="glyphicon glyphicon-cog"></i>Export tree data</button>
 				</div>
 			</div>
 
