@@ -102,7 +102,8 @@
 								sel = ref.get_selected();
 							if(!sel.length) { return false; }
 							ref.delete_node(sel);
-						};
+						};
+
 
 		*/
 
@@ -161,6 +162,22 @@
 				});
 
 			});
+
+			$('#jstree').on('after_open.jstree', function (e, data) {
+
+			    //append delete and edit buttons
+			    $(".node-child").each(function () {
+
+			        if ($(this).children("a.edit-node").length == 0 && $(this).children("a.delete-node").length == 0) {
+			            $(this).append("<a class='edit-node jstree-anchor' href='#'><i class='glyphicon glyphicon-pencil'></i></a>&nbsp;<a class='delete-node jstree-anchor' href='#'><i class='glyphicon glyphicon-trash'></i></a>");
+
+			        }
+
+			    });
+
+			});
+
+			
 			
 
 			//$('#jstree').on('create_node.jstree', function (e, data) {
@@ -183,9 +200,9 @@
 				//"conditionalselect": function (node) {
 				//    return node.text === "Dogs" ? false : true;
 				//},
-				'contextmenu': {
-					'items': customMenu
-				},
+				//'contextmenu': {
+				//	'items': customMenu
+				//},
 				"core": {
 					"check_callback": true,
 					"data": {
@@ -222,7 +239,7 @@
 
 
 				},
-				"plugins": ["types", "dnd", "checkbox", "contextmenu", "conditionalselect"]
+				"plugins": ["types", "dnd", "checkbox", "conditionalselect"]
 			});
 
 			$('#jstree').jstree("hide_dots");
@@ -291,25 +308,25 @@
 
 
 
-		function customMenu(node) {
-			var items = {
-				'item1': {
-					'label': 'Delete',
-					'action': function () {  }
-				},
-				'item2': {
-					'label': 'Rename',
-					'action': function () { /* action */ }
-				}
-			}
+		//function customMenu(node) {
+		//	var items = {
+		//		'item1': {
+		//			'label': 'Delete',
+		//			'action': function () {  }
+		//		},
+		//		'item2': {
+		//			'label': 'Rename',
+		//			'action': function () { /* action */ }
+		//		}
+		//	}
 
-			if ((node.id == '100') || (node.id == '200') || (node.id == '300')) {
-				delete items.item1;
-				delete items.item2;
-			} 
+		//	if ((node.id == '100') || (node.id == '200') || (node.id == '300')) {
+		//		delete items.item1;
+		//		delete items.item2;
+		//	} 
 
-			return items;
-		}
+		//	return items;
+		//}
 
 
 		function TreeDataResult(data, name)
