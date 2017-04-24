@@ -138,6 +138,7 @@
     <Content Include="Content\jsTree\themes\proton\fonts\titillium\titilliumweb-regular-webfont.woff" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="manage.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
@@ -167,6 +168,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="manage.aspx.cs">
+      <DependentUpon>manage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manage.aspx.designer.cs">
+      <DependentUpon>manage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\TreeDataResult.cs" />
     <Compile Include="Models\TreeViewNode.cs" />
