@@ -84,6 +84,8 @@
 			var n = ref.get_node(node.id);
 
 			n.li_attr.class = "node-child";
+			n.data["Archived"] = false;
+
 
 			$("#" + node.id).children().remove("a.undelete-node");
 
@@ -99,6 +101,8 @@
 		    var n = ref.get_node(node.id);
 
 		    n.li_attr.class = "node-child node-added";
+
+		    n.data ["Archived"] = true;
 
 		    $("#" + node.id).children().remove("a.delete-node").remove("a.edit-node");
 
@@ -316,7 +320,7 @@
 
 				var result = new TreeDataResult(data, "test");
 
-				$("#result").html(JSON.stringify(result));
+				$("#result").html(JSON.stringify(result, null, '\t'));
 
 				$.ajax({
 					type: "POST",
