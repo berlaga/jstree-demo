@@ -333,6 +333,7 @@
             $("#btnApplyType").on("click", function () {
 
                 var selected_type = $("#types").val();
+                var selected_text = $("#types").find("option:selected").text();
 
                 var instance = $('#jstree').jstree(true);
 
@@ -351,13 +352,28 @@
                     var node = instance.get_node(node_id);
 
                     //get proper type from first child of new parent
+                    var original_node_parent = instance.get_node(node.parent);
+
                     node.type = instance.get_node(node_parent.children[0]).type;
 
                     var id = instance.move_node(node, node_parent, 'last', null, true, false);
+
+                    //cleanup
+                    if(original_node_parent.children.length == 0)
+                    {
+                        instance.delete_node(original_node_parent.id);
+                    }
                 }
                 else
                 {
                     console.log("selected type doesnt exist");
+
+                    var types = $.jstree.defaults.types;
+
+                    instance.get_rules("1").valid_children.push(selected_type);
+
+                    //create new category node
+                    instance.create_node(node_root, { text: selected_text, type: selected_type });
 
                 }
 
