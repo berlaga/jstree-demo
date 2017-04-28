@@ -333,6 +333,7 @@
             $("#btnApplyType").on("click", function () {
 
                 var selected_type = $("#types").val();
+                var selected_type_id = $("#types").find("option:selected").data("id");
                 var selected_text = $("#types").find("option:selected").text();
 
                 var instance = $('#jstree').jstree(true);
@@ -341,15 +342,17 @@
                 //get root node
                 var node_root = instance.get_node("1");
 
-                if (node_root.children.indexOf(selected_type) >= 0)
+                var node_id = $("#dialogSelectCategory").data('selected_node_id');
+                var node = instance.get_node(node_id);
+
+
+                if (node_root.children.indexOf("" + selected_type_id + "") >= 0)
                 {
                     console.log("selected type exists");
 
-                    var new_parent_id = instance.get_node(node_root.children[node_root.children.indexOf(selected_type)]).id;
+                    var new_parent_id = instance.get_node(node_root.children[node_root.children.indexOf("" + selected_type_id + "")]).id;
                     var node_parent = instance.get_node(new_parent_id);
 
-                    var node_id = $("#dialogSelectCategory").data('selected_node_id');
-                    var node = instance.get_node(node_id);
 
                     //get proper type from first child of new parent
                     var original_node_parent = instance.get_node(node.parent);
@@ -373,24 +376,19 @@
                     instance.get_rules("1").valid_children.push(selected_type);
 
                     //create new category node
-                    instance.create_node(node_root, { text: selected_text, type: selected_type });
+                    var new_node_id = instance.create_node(node_root, {id:selected_type_id, text: selected_text, type: selected_type });
 
+                    var new_parent_node = instance.get_node(new_node_id);
+
+                    var id = instance.move_node(node, new_parent_node, 'last', null, true, false);
+
+                    //expand new node
+                    instance.toggle_node(new_parent_node);
                 }
 
                 $("#dialogSelectCategory").dialog("close");
                 instance.redraw();
 
-                //var node = instance.get_node("13");
-                //var node_parent = instance.get_node("2");
-
-                //if (node) {
-                //    node.type = "5";
-                //    //var id = $("#jstree").jstree('move_node', node.id, node_parent.id);
-                //    var id = instance.move_node(node, node_parent, 'last', null, true, false)
-
-                //}
-
-                //instance.redraw();
             });
 
             
@@ -476,10 +474,10 @@
         <fieldset>
             <legend></legend>
             <select id="types">
-                <option value="2">Large</option>
-                <option value="3">Small</option>
-                <option value="100">Work breeds</option>
-                <option value="200">Guard dogs</option>
+                <option data-id="2" value="2">Large</option>
+                <option data-id="3" value="3">Small</option>
+                <option data-id="55" value="100">Work breeds</option>
+                <option data-id="56" value="200">Guard dogs</option>
             </select>
             &nbsp;
             <button id="btnApplyType" type="button" class="btn btn-primary btn-sm">Apply</button>
