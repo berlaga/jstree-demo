@@ -364,7 +364,11 @@
                     //cleanup
                     if(original_node_parent.children.length == 0)
                     {
+                        //clear rules for the parent node we remove
+                        instance.get_rules(original_node_parent.id).valid_children.length = 0;
+
                         instance.delete_node(original_node_parent.id);
+
                     }
                 }
                 else
@@ -373,12 +377,17 @@
 
                     var types = $.jstree.defaults.types;
 
+                    //add parent node rules
                     instance.get_rules("1").valid_children.push(selected_type);
 
                     //create new category node
                     var new_node_id = instance.create_node(node_root, {id:selected_type_id, text: selected_text, type: selected_type });
 
                     var new_parent_node = instance.get_node(new_node_id);
+
+                    //set new child node rules if doesnt exist
+                    if (instance.get_rules(new_node_id).valid_children.length == 0)
+                        instance.get_rules(new_node_id).valid_children.push(node.type);
 
                     var id = instance.move_node(node, new_parent_node, 'last', null, true, false);
 
