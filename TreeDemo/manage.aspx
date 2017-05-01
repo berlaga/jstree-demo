@@ -389,10 +389,21 @@
                     if (instance.get_rules(new_node_id).valid_children.length == 0)
                         instance.get_rules(new_node_id).valid_children.push(node.type);
 
+                    var old_parent_id = node.parent;
+
                     var id = instance.move_node(node, new_parent_node, 'last', null, true, false);
 
                     //expand new node
                     instance.toggle_node(new_parent_node);
+
+                    //cleanup
+                    if(instance.get_node(old_parent_id).children.length == 0)
+                    {
+                        //clear rules for the parent node we remove
+                        instance.get_rules(instance.get_node(old_parent_id).id).valid_children.length = 0;
+
+                        instance.delete_node(instance.get_node(old_parent_id).id);
+                    }
                 }
 
                 $("#dialogSelectCategory").dialog("close");
