@@ -22,6 +22,23 @@ namespace TreeDemo.Controllers
             return man.CreateNewModel();
         }
 
+        [HttpGet]
+        public Newtonsoft.Json.Linq.JArray Demo()
+        {
+            TreeModelManager man = new TreeModelManager();
+
+            return man.CreateNewModelFromFile();
+        }
+
+        [HttpGet]
+        public Newtonsoft.Json.Linq.JToken GetTypes()
+        {
+            TreeModelManager man = new TreeModelManager();
+
+            return man.LoadTypes();
+        }
+
+
         // GET: api/Tree/5
         [HttpGet]
         public IEnumerable<TreeViewNode> Get(int id)

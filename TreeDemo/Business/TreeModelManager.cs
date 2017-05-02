@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 using System.Web;
+using System.IO;
+
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 using TreeDemo.Data;
 using TreeDemo.Models;
@@ -14,6 +18,40 @@ namespace TreeDemo.Business
     {
         //ctor
         public TreeModelManager() { }
+
+        public JArray CreateNewModelFromFile()
+        {
+            using (StreamReader sr = new StreamReader(System.Web.Hosting.HostingEnvironment.MapPath("~/App_Data/data.json")))
+            {
+                JArray jsonObj = JArray.Parse(sr.ReadToEnd());
+
+
+                return jsonObj;
+
+                //foreach (var item in jsonObj)
+                //{
+                //    TreeNode n = (TreeNode)JsonConvert.DeserializeObject(item.ToString(), typeof(TreeNode));
+                //}
+            }
+
+            //List<TreeViewNode> treeNodes = new List<TreeViewNode>();
+
+            //return treeNodes;
+        }
+
+        public JToken LoadTypes()
+        {
+            using (StreamReader sr = new StreamReader(System.Web.Hosting.HostingEnvironment.MapPath("~/App_Data/types.json")))
+            {
+                JToken types = JToken.Parse(sr.ReadToEnd());
+
+                return types;
+            }
+
+
+        }
+
+
 
         public List<TreeViewNode> CreateNewModel()
         {

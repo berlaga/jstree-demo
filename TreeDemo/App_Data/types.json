@@ -1,0 +1,1 @@
+﻿{ "#": { "valid_children": [ ] }, "1": { "valid_children": [ "2", "3" ] }, "2": { "valid_children": [ "5" ] }, "3": { "valid_children": [ "4" ] }, "4": { "valid_children": [ ] }, "5": { "valid_children": [ ] },"default": { "icon": "glyphicon glyphicon-leaf" } }

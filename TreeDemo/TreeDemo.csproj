@@ -156,6 +156,7 @@
     <Content Include="Content\themes\default\throbber.gif" />
     <Content Include="databound_tree.aspx" />
     <Content Include="default.aspx" />
+    <Content Include="demo.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\themes\default-dark\Thumbs.db" />
@@ -177,6 +178,8 @@
     <Content Include="Content\jsTree\themes\proton\fonts\titillium\titilliumweb-regular-webfont.eot" />
     <Content Include="Content\jsTree\themes\proton\fonts\titillium\titilliumweb-regular-webfont.ttf" />
     <Content Include="Content\jsTree\themes\proton\fonts\titillium\titilliumweb-regular-webfont.woff" />
+    <Content Include="App_Data\data.json" />
+    <Content Include="App_Data\types.json" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <Content Include="manage.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -208,6 +211,13 @@
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="demo.aspx.cs">
+      <DependentUpon>demo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="demo.aspx.designer.cs">
+      <DependentUpon>demo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -219,6 +229,7 @@
       <DependentUpon>manage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\TreeDataResult.cs" />
+    <Compile Include="Models\TreeNode.cs" />
     <Compile Include="Models\TreeViewNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -232,9 +243,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\TreeDemo.Data\TreeDemo.Data.csproj">
       <Project>{d98a1699-f26b-4444-88b8-6cae0b0cc46c}</Project>
