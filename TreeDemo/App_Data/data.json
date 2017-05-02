@@ -1,171 +1,191 @@
 ﻿[
     {
         "id": "1",
-        "text": "Dogs",
+        "text": "Set #1 - 2017-04-27",
         "icon": "glyphicon glyphicon-flash",
         "state": {
-            "loaded": true,
             "opened": true,
-            "selected": false,
-            "disabled": false
+            "selected": false
         },
         "data": {
             "IsRoot": true,
             "IsSelected": false
         },
         "parent": "#",
-        "type": "1",
-        "state": {"opened":  true}
+        "type": "1"
     },
     {
         "id": "2",
-        "text": "Large Dogs",
+        "text": "Primary Crown Brief Documents",
         "icon": "glyphicon glyphicon-picture",
         "state": {
-            "loaded": true,
             "opened": true,
-            "selected": false,
-            "disabled": false
+            "selected": false
         },
         "data": {
             "IsRoot": true,
             "IsSelected": false
         },
         "parent": "1",
-        "type": "2",
-        "state": {"opened":  false}
+        "type": "2"
+    },
+    {
+        "id": "102",
+        "text": "Charge Sheet / Arrest Report",
+        "icon": "glyphicon glyphicon-picture",
+        "state": {
+            "opened": true,
+            "selected": false
+        },
+        "data": {
+            "IsRoot": true,
+            "IsSelected": false
+        },
+        "parent": "2",
+        "type": "22"
     },
     {
         "id": "5",
-        "text": "Great Dane",
-        "icon": "glyphicon glyphicon-globe",
+        "text": "Arrest (green sheet)",
+        "icon": "/content/images/android_logo.png",
         "state": {
-            "loaded": true,
-            "opened": false,
-            "selected": false,
-            "disabled": false
+            "opened": true,
+            "selected": false
         },
         "data": {
             "IsRoot": false,
             "IsSelected": false
         },
-        "parent": "2",
+        "parent": "102",
         "type": "5",
-        "li_attr":  {"class": "node-child"}
-
+        "li_attr": { "class": "node-child" }
     },
     {
         "id": "6",
-        "text": "Giant Schnauzer",
-        "icon": "glyphicon glyphicon-globe",
+        "text": "Arrest report #123",
+        "icon": "/content/images/android_logo.png",
         "state": {
-            "loaded": true,
-            "opened": false,
-            "selected": false,
-            "disabled": false
+            "opened": true,
+            "selected": false
         },
         "data": {
             "IsRoot": false,
             "IsSelected": false
         },
-        "parent": "2",
+        "parent": "102",
         "type": "5",
-        "li_attr":  {"class": "node-child"}
+        "li_attr": { "class": "node-child node-added" }
 
     },
     {
         "id": "7",
-        "text": "Great Pyrenees",
-        "icon": "glyphicon glyphicon-globe",
+        "text": "Arrest report #567",
+        "icon": "/content/images/android_logo.png",
         "state": {
-            "loaded": true,
-            "opened": false,
-            "selected": false,
-            "disabled": false
+            "opened": true,
+            "selected": false
         },
         "data": {
             "IsRoot": false,
             "IsSelected": false
         },
-        "parent": "2",
+        "parent": "102",
         "type": "5",
-        "li_attr":  {"class": "node-child"}
+        "li_attr": { "class": "node-child node-archived" }
 
     },
     {
         "id": "3",
-        "text": "Small Dogs",
+        "text": "Accused Criminal Record",
         "icon": "glyphicon glyphicon-plane",
         "state": {
-            "loaded": true,
             "opened": true,
-            "selected": false,
-            "disabled": false
+            "selected": false
         },
         "data": {
             "IsRoot": true,
             "IsSelected": false
         },
         "parent": "1",
-        "type": "3",
-        "state": {"opened":  true}
-
+        "type": "3"
     },
     {
         "id": "8",
-        "text": "Chiwawa",
-        "icon": "glyphicon glyphicon-tower",
+        "text": "Criminal Record - Local Record - Accused",
+        "icon": "/Content/images/doc_icon2.png",
         "state": {
-            "loaded": true,
-            "opened": false,
-            "selected": false,
-            "disabled": false
+            "opened": true,
+            "selected": false
         },
         "data": {
             "IsRoot": false,
             "IsSelected": false
         },
         "parent": "3",
-        "type": "4",
-        "li_attr":  {"class": "node-child"}
-
+        "type": "44"
+    },
+    {
+        "id": "128",
+        "text": "Accused #12345",
+        "icon": "/Content/images/accused.png",
+        "state": {
+            "opened": true,
+            "selected": false
+        },
+        "data": {
+            "IsRoot": false,
+            "IsSelected": false
+        },
+        "parent": "8",
+        "type": "888",
+        "li_attr": { "class": "node-child" }
+    },
+    {
+        "id": "129",
+        "text": "Accused #89765",
+        "icon": "/Content/images/accused.png",
+        "state": {
+            "opened": true,
+            "selected": false
+        },
+        "data": {
+            "IsRoot": false,
+            "IsSelected": false
+        },
+        "parent": "8",
+        "type": "888",
+        "li_attr": { "class": "node-child" }
     },
     {
         "id": "13",
-        "text": "Yorkshire Terrier",
-        "icon": "glyphicon glyphicon-tower",
+        "text": "Ciminal Record - CPIC - Accused",
+        "icon": "/Content/images/doc_icon1.png",
         "state": {
-            "loaded": true,
-            "opened": false,
-            "selected": false,
-            "disabled": false
+            "opened": true,
+            "selected": false
         },
         "data": {
             "IsRoot": false,
             "IsSelected": false
         },
         "parent": "3",
-        "type": "4",
-        "li_attr":  {"class": "node-child"}
+        "type": "45"
 
     },
     {
         "id": "14",
-        "text": "Miniature Schnauzer",
-        "icon": "glyphicon glyphicon-tower",
+        "text": "CFRO (Canadian Firearms Registry) Cgeck - Acused",
+        "icon": "/Content/images/doc_icon.png",
         "state": {
-            "loaded": true,
-            "opened": false,
-            "selected": false,
-            "disabled": false
+            "opened": true,
+            "selected": false
         },
         "data": {
             "IsRoot": false,
             "IsSelected": false
         },
         "parent": "3",
-        "type": "4",
-        "li_attr":  {"class": "node-child node-added"}
+        "type": "46"
 
     }
 ]

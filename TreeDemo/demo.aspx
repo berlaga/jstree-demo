@@ -4,20 +4,25 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Dem0 - JSON from file</title>
+    <title>Demo - Final</title>
 
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="Content/jsTree/themes/default/style.css" rel="stylesheet" />
     <link href="Content/themes/base/jquery-ui.css" rel="stylesheet" />
 
     <style type="text/css">
-        .node-added {
+        .node-archived {
             color: red;
         }
 
-            .node-added a {
-                text-decoration: line-through !important;
-            }
+        .node-archived a {
+            text-decoration: line-through !important;
+        }
+
+        .node-added {
+            color: blue;
+        }
+
     </style>
 
     <script src="Scripts/jquery-1.12.4.js"></script>
@@ -108,7 +113,7 @@
 
             $("#" + node.id).children().remove("a.undelete-node");
 
-            node.classList.remove("node-added");
+            node.classList.remove("node-archived");
 
             ref.redraw();
         }
@@ -119,13 +124,13 @@
 
             var n = ref.get_node(node.id);
 
-            n.li_attr.class = "node-child node-added";
+            n.li_attr.class = "node-child node-archived";
 
             n.data["Archived"] = true;
 
             $("#" + node.id).children().remove("a.delete-node").remove("a.edit-node").remove("a.change-node");
 
-            node.classList.add("node-added");
+            node.classList.add("node-archived");
 
             ref.redraw();
 
@@ -222,7 +227,7 @@
             $('#jstree').on('redraw.jstree', function (e, data) {
 
                 //append delete and edit buttons
-                $(".node-child").not(".node-added").each(function () {
+                $(".node-child").not(".node-archived").each(function () {
 
                     if ($(this).children("a.edit-node").length == 0 && $(this).children("a.delete-node").length == 0) {
                         $(this).append(edit_delete_buttons);
@@ -231,7 +236,7 @@
 
                 });
 
-                $(".node-added").each(function () {
+                $(".node-archived").each(function () {
 
                     if ($(this).children("a.undelete-node").length == 0) {
 
@@ -246,7 +251,7 @@
             $('#jstree').on('after_open.jstree', function (e, data) {
 
                 //append delete and edit buttons
-                $(".node-child").not(".node-added").each(function () {
+                $(".node-child").not(".node-archived").each(function () {
 
                     if ($(this).children("a.edit-node").length == 0 && $(this).children("a.delete-node").length == 0) {
 
@@ -256,7 +261,7 @@
 
                 });
 
-                $(".node-added").each(function () {
+                $(".node-archived").each(function () {
 
                     if ($(this).children("a.undelete-node").length == 0) {
 

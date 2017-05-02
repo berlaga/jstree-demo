@@ -85,6 +85,11 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\accused.png" />
+    <Content Include="Content\images\android_logo.png" />
+    <Content Include="Content\images\doc_icon.png" />
+    <Content Include="Content\images\doc_icon1.png" />
+    <Content Include="Content\images\doc_icon2.png" />
     <Content Include="Content\jsTree\themes\default-dark\32px.png" />
     <Content Include="Content\jsTree\themes\default-dark\40px.png" />
     <Content Include="Content\jsTree\themes\default-dark\style.css" />
