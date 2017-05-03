@@ -184,7 +184,8 @@
                 appendTo: '.container',
                 close: onDialogClose,
                 open: onDialogOpen,
-                position: { my: "center", at: "center", of: "#jstree" }
+                position: { my: "center", at: "center", of: "#jstree" },
+                width: 450
             });
 
 
@@ -455,14 +456,14 @@
 
 
     <!-- dialog -->
-    <div id="dialogSelectCategory" style="display: none; width: 430px;">
+    <div id="dialogSelectCategory" style="display: none;">
         <fieldset>
             <legend></legend>
             <select id="types">
-                <option data-id="2" value="2">Large</option>
-                <option data-id="3" value="3">Small</option>
-                <option data-id="55" value="100">Work breeds</option>
-                <option data-id="56" value="200">Guard dogs</option>
+                <option data-id="102" value="22">Charge Sheet / Arrest Report</option>
+                <option data-id="8" value="44">Criminal Record - Local Record - Accused</option>
+                <option data-id="1099" value="700">Police Notes - Memo Book</option>
+                <option data-id="1100" value="800">Miscellaneous</option>
             </select>
             &nbsp;
             <button id="btnApplyType" type="button" class="btn btn-primary btn-sm">Apply</button>
