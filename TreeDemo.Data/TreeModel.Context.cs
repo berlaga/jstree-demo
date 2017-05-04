@@ -28,5 +28,6 @@ namespace TreeDemo.Data
         public virtual DbSet<TreeItem> TreeItems { get; set; }
         public virtual DbSet<TreeItemType> TreeItemTypes { get; set; }
         public virtual DbSet<TreeState> TreeStates { get; set; }
+        public virtual DbSet<DisclosureItemCategory> DisclosureItemCategories { get; set; }
     }
 }
