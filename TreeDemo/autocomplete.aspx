@@ -84,8 +84,14 @@
                     });
                 },
                 minLength: 2,
-                autoFocus: true,
+                //autoFocus: true,
                 delay: 200,
+                focus: function (event, ui) {
+                    event.preventDefault();
+                    $(this).val(ui.item.label);
+
+                },
+
                 select: function (event, ui) {
                     event.preventDefault();
                     $(this).val(ui.item.label);
